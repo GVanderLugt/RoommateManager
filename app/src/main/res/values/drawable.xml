@@ -7,4 +7,8 @@
 
     <!-- Relative Layout Drawables -->
     <drawable name="relative_layout_background">#ffd3d3d3</drawable>
+
+    <!-- Nav Drawer List View Drawables -->
+    <drawable name="list_selected">#ff695797</drawable>
+
 </resources>

@@ -49,11 +49,45 @@ public class MainActivity extends Activity
 
     @Override
     public void onNavigationDrawerItemSelected(int position) {
+        //Set the initial fragment to the HomeFragment
+        Fragment fragment = new HomeFragment();
+
+        //Set the initial title to 'Home'
+        mTitle = getString(R.string.title_section1);
+
+        //Declare the fragment manager
+        FragmentManager fragmentManager = getFragmentManager();
+
+        //Switch to the fragment selected
+        switch(position){
+            case 0:
+                fragment = new HomeFragment();
+                mTitle = getString(R.string.title_section1);
+                break;
+            case 1:
+                fragment = new GroceriesFragment();
+                mTitle = getString(R.string.title_section2);
+                break;
+            case 2:
+                fragment = new FinancesFragment();
+                mTitle = getString(R.string.title_section3);
+                break;
+            case 3:
+                fragment = new ToDoFragment();
+                mTitle = getString(R.string.title_section4);
+                break;
+        }
+
+        //Replace the existing fragment with the new fragment
+        fragmentManager.beginTransaction().replace(R.id.container, fragment).commit();
+
+       /*
         // update the main content by replacing fragments
         FragmentManager fragmentManager = getFragmentManager();
         fragmentManager.beginTransaction()
                 .replace(R.id.container, PlaceholderFragment.newInstance(position + 1))
                 .commit();
+                */
     }
 
     public void onSectionAttached(int number) {
@@ -66,6 +100,9 @@ public class MainActivity extends Activity
                 break;
             case 3:
                 mTitle = getString(R.string.title_section3);
+                break;
+            case 4:
+                mTitle = getString(R.string.title_section4);
                 break;
         }
     }
@@ -105,18 +142,18 @@ public class MainActivity extends Activity
 
     /**
      * A placeholder fragment containing a simple view.
-     */
+
     public static class PlaceholderFragment extends Fragment {
         /**
          * The fragment argument representing the section number for this
          * fragment.
-         */
+
         private static final String ARG_SECTION_NUMBER = "section_number";
 
         /**
          * Returns a new instance of this fragment for the given section
          * number.
-         */
+
         public static PlaceholderFragment newInstance(int sectionNumber) {
             PlaceholderFragment fragment = new PlaceholderFragment();
             Bundle args = new Bundle();
@@ -142,5 +179,6 @@ public class MainActivity extends Activity
                     getArguments().getInt(ARG_SECTION_NUMBER));
         }
     }
+        **/
 
 }
