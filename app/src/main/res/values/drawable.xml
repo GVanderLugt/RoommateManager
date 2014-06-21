@@ -2,6 +2,8 @@
 <resources>
     <!-- Action Bar Drawables -->
     <drawable name="actionbar_background">#ff8674b5</drawable>
+    <drawable name="title_text_color">#ffff</drawable>
+    <drawable name="actionbar_text_color">#ffff</drawable>
 
     <!-- Relative Layout Drawables -->
     <drawable name="relative_layout_background">#ffd3d3d3</drawable>
