@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Action Bar Drawables -->
+    <drawable name="actionbar_background">#ff8674b5</drawable>
+
+    <!-- Relative Layout Drawables -->
+    <drawable name="relative_layout_background">#ffd3d3d3</drawable>
+</resources>
