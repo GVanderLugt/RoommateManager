@@ -90,26 +90,22 @@ public class NavigationDrawerFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
             Bundle savedInstanceState) {
         mDrawerListView = (ListView) inflater.inflate(
-                R.layout.fragment_navigation_drawer, container, false);
+                R.layout.fragment_navigation_drawer2, container, false);
         mDrawerListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 selectItem(position);
             }
         });
-
-        //Array of nav drawer titles
-        String[] navDrawerTitles = new String[]{getString(R.string.title_section1),
-                getString(R.string.title_section2),
-                getString(R.string.title_section3),
-                getString(R.string.title_section4)};
-
-        //Set the nav drawer's ArrayAdapter
-        ArrayAdapter<String> navDrawerArrayAdapter = new ArrayAdapter<String>(getActionBar().getThemedContext(),
+        mDrawerListView.setAdapter(new ArrayAdapter<String>(
+                getActionBar().getThemedContext(),
                 android.R.layout.simple_list_item_activated_1,
                 android.R.id.text1,
-                navDrawerTitles);
-        mDrawerListView.setAdapter(navDrawerArrayAdapter);
+                new String[]{
+                        getString(R.string.title_section1),
+                        getString(R.string.title_section2),
+                        getString(R.string.title_section3),
+                }));
         mDrawerListView.setItemChecked(mCurrentSelectedPosition, true);
         return mDrawerListView;
     }
