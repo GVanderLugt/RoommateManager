@@ -1,10 +1,12 @@
-package edu.iupui.gdvander.roommatemanager.app;
+package edu.iupui.gdvander.roommatemanager.app.finances;
 
 import android.os.Bundle;
 import android.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+
+import edu.iupui.gdvander.roommatemanager.app.R;
 
 public class FinancesFragment extends Fragment {
     @Override

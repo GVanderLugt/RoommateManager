@@ -1,10 +1,12 @@
-package edu.iupui.gdvander.roommatemanager.app;
+package edu.iupui.gdvander.roommatemanager.app.home;
 
 import android.os.Bundle;
 import android.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+
+import edu.iupui.gdvander.roommatemanager.app.R;
 
 public class HomeFragment extends Fragment {
     @Override
