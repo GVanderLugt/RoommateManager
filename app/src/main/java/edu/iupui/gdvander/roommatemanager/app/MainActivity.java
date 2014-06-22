@@ -1,22 +1,20 @@
 package edu.iupui.gdvander.roommatemanager.app;
 
 import android.app.Activity;
-
 import android.app.ActionBar;
 import android.app.Fragment;
-import android.app.FragmentManager;
+import android.support.v4.app.FragmentManager;
 import android.os.Bundle;
+import android.support.v4.app.FragmentActivity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.support.v4.widget.DrawerLayout;
-
 import edu.iupui.gdvander.roommatemanager.app.finances.FinancesFragment;
 import edu.iupui.gdvander.roommatemanager.app.groceries.GroceriesFragment;
 import edu.iupui.gdvander.roommatemanager.app.home.HomeFragment;
 import edu.iupui.gdvander.roommatemanager.app.todo.ToDoFragment;
 
-
-public class MainActivity extends Activity
+public class MainActivity extends FragmentActivity
         implements NavigationDrawerFragment.NavigationDrawerCallbacks {
 
     /**
@@ -35,7 +33,7 @@ public class MainActivity extends Activity
         setContentView(R.layout.activity_main);
 
         mNavigationDrawerFragment = (NavigationDrawerFragment)
-                getFragmentManager().findFragmentById(R.id.navigation_drawer);
+                getSupportFragmentManager().findFragmentById(R.id.navigation_drawer);
         mTitle = getTitle();
 
         // Set up the drawer.
@@ -47,13 +45,13 @@ public class MainActivity extends Activity
     @Override
     public void onNavigationDrawerItemSelected(int position) {
         //Set the initial fragment to the HomeFragment
-        Fragment fragment = new HomeFragment();
+        android.support.v4.app.Fragment fragment = new HomeFragment();
 
         //Set the initial title to 'Home'
         mTitle = getString(R.string.title_section1);
 
         //Declare the fragment manager
-        FragmentManager fragmentManager = getFragmentManager();
+        FragmentManager fragmentManager = getSupportFragmentManager();
 
         //Switch to the fragment selected
         switch(position){

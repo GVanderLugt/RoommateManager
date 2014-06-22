@@ -8,12 +8,20 @@ import android.view.ViewGroup;
 
 import edu.iupui.gdvander.roommatemanager.app.R;
 
-public class HomeFragment extends Fragment {
+public class HomeTab extends Fragment {
+
+
+    public HomeTab() {
+        // Required empty public constructor
+    }
+
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState){
-        View rootView = inflater.inflate(R.layout.fragment_home, container, false);
-
-        return rootView;
+                             Bundle savedInstanceState) {
+        // Inflate the layout for this fragment
+        return inflater.inflate(R.layout.fragment_home_tab, container, false);
     }
+
+
 }
