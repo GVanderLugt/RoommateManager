@@ -22,8 +22,8 @@ public class TabsPagerAdapter extends FragmentPagerAdapter {
 
     @Override
     public int getCount(){
-        //Show 3 total pages.
-        return 3;
+        //Number of tabs to be displayed
+        return 2;
     }
 
     @Override
@@ -31,6 +31,8 @@ public class TabsPagerAdapter extends FragmentPagerAdapter {
         switch(position){
             case 0:
                 return "Home";
+            case 1:
+                return "Details";
         }
         return null;
     }
