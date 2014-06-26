@@ -4,6 +4,7 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.app.Fragment;
 
+import edu.iupui.gdvander.roommatemanager.app.home.DetailsTab;
 import edu.iupui.gdvander.roommatemanager.app.home.HomeTab;
 
 public class TabsPagerAdapter extends FragmentPagerAdapter {
@@ -16,6 +17,8 @@ public class TabsPagerAdapter extends FragmentPagerAdapter {
         switch(position){
             case 0:
                 return new HomeTab();
+            case 1:
+                return new DetailsTab();
         }
         return null;
     }

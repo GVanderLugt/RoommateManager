@@ -1,5 +1,6 @@
 package edu.iupui.gdvander.roommatemanager.app.home;
 
+import android.app.Activity;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -19,6 +20,22 @@ public class HomeFragment extends Fragment {
         View rootView = inflater.inflate(R.layout.fragment_home, container, false);
 
         return rootView;
+    }
+
+    @Override
+    public void onActivityCreated(Bundle savedInstanceState){
+        super.onActivityCreated(savedInstanceState);
+
+        //Initialize
+        TabsPagerAdapter pagerAdapter = new TabsPagerAdapter(getFragmentManager());
+        ViewPager viewPager = (ViewPager) getView().findViewById(R.id.pager);
+
+        //Set the view pager's adapter
+        viewPager.setAdapter(pagerAdapter);
+
+        //Set the tab indicator color on the PagerTabStrip
+        PagerTabStrip pagerTabStrip = (PagerTabStrip) getView().findViewById(R.id.pager_tab_strip);
+        pagerTabStrip.setTabIndicatorColor(Color.parseColor("#ff8674b5"));
     }
 
 }
