@@ -44,41 +44,76 @@ public class MainActivity extends FragmentActivity
 
     @Override
     public void onNavigationDrawerItemSelected(int position) {
-        //Set the initial fragment to the HomeFragment
-        android.support.v4.app.Fragment fragment = new HomeFragment();
+        //Initialize fragment
+        android.support.v4.app.Fragment fragment;
 
-        //Set the initial title to 'Home'
-        mTitle = getString(R.string.title_section1);
-        setTitle(mTitle);
-
-        //Set the Home fragment tag
-        String fragmentTag = ("HOME_FRAGMENT");
+        //Initialize fragment tag
+        String fragmentTag;
 
         //Declare the fragment manager
         FragmentManager fragmentManager = getSupportFragmentManager();
 
+        //Set initial title
+        mTitle = "Home";
+        setTitle(mTitle);
 
         //Switch to the fragment selected
         switch(position){
             case 0:
-                fragment = new HomeFragment();
-                mTitle = getString(R.string.title_section1);
+                //Set the fragment tag
+                fragmentTag = "HOME_FRAGMENT";
+
+                //Set the fragment. Find with tag.
+                fragment = fragmentManager.findFragmentByTag(fragmentTag);
+
+                //If the fragment does not exist, create a new one and keep the tag
+                if(fragment == null){
+                    fragment = new HomeFragment();
+                    mTitle = "Home";
+                }
                 break;
+
             case 1:
-                fragment = new GroceriesFragment();
-                mTitle = getString(R.string.title_section2);
+                fragmentTag = "GROCERIES_FRAGMENT";
+                fragment = fragmentManager.findFragmentByTag(fragmentTag);
+                if(fragment == null){
+                    fragment = new GroceriesFragment();
+                    mTitle = "Groceries";
+                }
                 break;
+
             case 2:
-                fragment = new FinancesFragment();
-                mTitle = getString(R.string.title_section3);
+                fragmentTag = "FINANCES_FRAGMENT";
+                fragment = fragmentManager.findFragmentByTag(fragmentTag);
+                if(fragment == null){
+                    fragment = new FinancesFragment();
+                    mTitle = "Finances";
+                }
                 break;
+
             case 3:
-                fragment = new ToDoFragment();
-                mTitle = getString(R.string.title_section4);
+                fragmentTag = "TO_DO_FRAGMENT";
+                fragment = fragmentManager.findFragmentByTag(fragmentTag);
+                if(fragment == null){
+                    fragment = new ToDoFragment();
+                    mTitle = "To - Do";
+                }
                 break;
+
+            default:
+                //Set the initial fragment to the HomeFragment
+                fragment = new HomeFragment();
+
+                //Set the initial title to 'Home'
+                mTitle = "Home";
+                setTitle(mTitle);
+
+                //Set the Home fragment tag
+                fragmentTag = ("HOME_FRAGMENT");
         }
+
         //Replace the existing fragment with the new fragment
-        fragmentManager.beginTransaction().replace(R.id.container, fragment).commit();
+        fragmentManager.beginTransaction().replace(R.id.container, fragment, fragmentTag).commit();
 
     }
 

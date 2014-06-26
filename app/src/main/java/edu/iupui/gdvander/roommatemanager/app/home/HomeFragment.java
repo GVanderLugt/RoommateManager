@@ -18,8 +18,6 @@ public class HomeFragment extends Fragment {
                              Bundle savedInstanceState){
         View rootView = inflater.inflate(R.layout.fragment_home, container, false);
 
-        System.out.println("############# onCreateView ####################");
-
         return rootView;
     }
 
@@ -37,13 +35,6 @@ public class HomeFragment extends Fragment {
         //Set the tab indicator color on the PagerTabStrip
         PagerTabStrip pagerTabStrip = (PagerTabStrip) getView().findViewById(R.id.pager_tab_strip);
         pagerTabStrip.setTabIndicatorColor(Color.parseColor("#ff8674b5"));
-    }
-
-    @Override
-    public void onDestroyView(){
-        super.onDestroyView();
-
-        System.out.println("-------------- onDestroyView ------------------------");
     }
 
 }
