@@ -77,7 +77,6 @@ public class MainActivity extends FragmentActivity
                 mTitle = getString(R.string.title_section4);
                 break;
         }
-
         //Replace the existing fragment with the new fragment
         fragmentManager.beginTransaction().replace(R.id.container, fragment).commit();
 
