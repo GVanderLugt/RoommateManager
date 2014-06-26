@@ -1,15 +1,12 @@
-package edu.iupui.gdvander.roommatemanager.adapter;
+package edu.iupui.gdvander.roommatemanager.app.home;
 
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.app.Fragment;
 
-import edu.iupui.gdvander.roommatemanager.app.home.DetailsTab;
-import edu.iupui.gdvander.roommatemanager.app.home.HomeTab;
+public class HomePagerAdapter extends FragmentPagerAdapter {
 
-public class TabsPagerAdapter extends FragmentPagerAdapter {
-
-    public TabsPagerAdapter(FragmentManager fm) {super(fm);}
+    public HomePagerAdapter(FragmentManager fm) {super(fm);}
 
     @Override
     public Fragment getItem(int position){

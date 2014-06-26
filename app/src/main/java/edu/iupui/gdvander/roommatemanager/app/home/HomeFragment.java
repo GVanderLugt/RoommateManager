@@ -9,7 +9,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import edu.iupui.gdvander.roommatemanager.adapter.TabsPagerAdapter;
 import edu.iupui.gdvander.roommatemanager.app.R;
 
 public class HomeFragment extends Fragment {
@@ -26,7 +25,7 @@ public class HomeFragment extends Fragment {
         super.onActivityCreated(savedInstanceState);
 
         //Initialize
-        TabsPagerAdapter pagerAdapter = new TabsPagerAdapter(getChildFragmentManager());
+        HomePagerAdapter pagerAdapter = new HomePagerAdapter(getChildFragmentManager());
         ViewPager viewPager = (ViewPager) getView().findViewById(R.id.pager);
 
         //Set the view pager's adapter
@@ -34,7 +33,7 @@ public class HomeFragment extends Fragment {
 
         //Set the tab indicator color on the PagerTabStrip
         PagerTabStrip pagerTabStrip = (PagerTabStrip) getView().findViewById(R.id.pager_tab_strip);
-        pagerTabStrip.setTabIndicatorColor(Color.parseColor("#ff8674b5"));
+        pagerTabStrip.setTabIndicatorColor(Color.parseColor(getString(R.string.tab_indicator_color)));
     }
 
 }

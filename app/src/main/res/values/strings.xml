@@ -12,6 +12,9 @@
     <string name="navigation_drawer_close">Close navigation drawer</string>
     <string name="action_example">Example action</string>
     <string name="action_settings">Settings</string>
+
+    <!-- Tab indicator color -->
+    <string name="tab_indicator_color">#ff8674b5</string>
     <string name="hello_blank_fragment">Hello blank fragment</string>
 
 </resources>
