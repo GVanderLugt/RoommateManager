@@ -49,9 +49,14 @@ public class MainActivity extends FragmentActivity
 
         //Set the initial title to 'Home'
         mTitle = getString(R.string.title_section1);
+        setTitle(mTitle);
+
+        //Set the Home fragment tag
+        String fragmentTag = ("HOME_FRAGMENT");
 
         //Declare the fragment manager
         FragmentManager fragmentManager = getSupportFragmentManager();
+
 
         //Switch to the fragment selected
         switch(position){

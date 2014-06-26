@@ -17,7 +17,17 @@ public class DetailsTab extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+
+        System.out.println("############# onCreateView ####################");
+
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_details_tab, container, false);
+    }
+
+    @Override
+    public void onDestroyView(){
+        super.onDestroyView();
+
+        System.out.println("-------------- onDestroyView ------------------------");
     }
 }
