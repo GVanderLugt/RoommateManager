@@ -1,13 +1,16 @@
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
+<android.support.v4.view.ViewPager
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/pager"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="edu.iupui.gdvander.roommatemanager.app.finances.FinancesFragment">
+    android:background="#ffd3d3d3">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
+    <android.support.v4.view.PagerTabStrip
+        android:id="@+id/pager_tab_strip"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="Finances" />
+        android:layout_height="wrap_content"
+        android:layout_gravity="top"
+        android:textColor="#000000"
+        />
 
-</FrameLayout>
+</android.support.v4.view.ViewPager>
