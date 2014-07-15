@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<pre-dex-items>
+
+    <item
+        dex="C:\Users\Gerrit\AndroidStudioProjects\RoommateManager\app\build\intermediates\pre-dexed\debug\classes-55e5d2791a46a0bd7bcd894e3189db83d0283903.jar"
+        jar="C:\Users\Gerrit\AndroidStudioProjects\RoommateManager\build\intermediates\exploded-aar\com.google.android.gms\play-services\4.4.52\classes.jar"
+        jumboMode="false"
+        revision="19.1.0"
+        sha1="3dfdf1db5ce5ea2999a5dcde8c8e650b02660059"/>
+    <item
+        dex="C:\Users\Gerrit\AndroidStudioProjects\RoommateManager\app\build\intermediates\pre-dexed\debug\support-v4-19.1.0-aa7336702f058bdafbbed4129a0c0eb13461cbbe.jar"
+        jar="C:\Users\Gerrit\AppData\Local\Android\android-studio2\sdk\extras\android\m2repository\com\android\support\support-v4\19.1.0\support-v4-19.1.0.jar"
+        jumboMode="false"
+        revision="19.1.0"
+        sha1="85f201b380937e61a9dce6ca90ccf6872abbfb67"/>
+
+</pre-dex-items>

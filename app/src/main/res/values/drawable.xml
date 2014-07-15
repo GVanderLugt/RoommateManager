@@ -11,4 +11,10 @@
     <!-- Nav Drawer List View Drawables -->
     <drawable name="list_selected">#ff695797</drawable>
 
+    <!-- Button Drawables -->
+    <drawable name="button_pressed">#ff584682</drawable>
+    <drawable name="button_focused">#ff584682</drawable>
+    <drawable name="button_default">#ff8674b5</drawable>
+    <drawable name="button_txtcolor">#ffffffff</drawable>
+
 </resources>

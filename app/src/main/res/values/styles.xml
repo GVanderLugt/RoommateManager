@@ -5,6 +5,7 @@
         <!-- Customize your theme here. -->
         <item name="android:actionBarStyle">@style/AppTheme.ActionBar</item>
         <item name="android:activatedBackgroundIndicator">@drawable/activated_background</item>
+        <item name="android:buttonStyle">@style/AppTheme.Button</item>
     </style>
 
     <!-- Action Bar Style Defined -->
@@ -20,6 +21,12 @@
     <!-- Relative Layout Style Defined -->
     <style name="AppTheme.RelativeLayout" parent="@AppTheme">
         <item name="android:background">@drawable/relative_layout_background</item>
+    </style>
+
+    <!-- Button Style Defined -->
+    <style name="AppTheme.Button" parent="android:style/Widget.Holo.Light.Button">
+        <item name="android:background">@drawable/button_custom</item>
+        <item name="android:textColor">@drawable/button_txtcolor</item>
     </style>
 
 </resources>

@@ -1,17 +1,31 @@
 package edu.iupui.gdvander.roommatemanager.app;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.Button;
 
-
-public class loginActivity extends Activity {
+public class LoginActivity extends Activity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
+
+        //Set btnLogin listener
+        Button btnLogin = (Button)findViewById(R.id.btnLogin);
+        btnLogin.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                //Start the main activity
+                Intent intentMain = new Intent(LoginActivity.this, MainActivity.class);
+                startActivity(intentMain);
+
+            }
+        });
     }
 
 

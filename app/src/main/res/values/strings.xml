@@ -19,4 +19,12 @@
     <string name="title_activity_login">loginActivity</string>
     <string name="hello_world">Hello world!</string>
 
+    <!-- Button Titles -->
+    <string name="login_button_title">Login</string>
+    <string name="createAccount_button_title">Create Account</string>
+
+    <!-- EditText Hints -->
+    <string name="username_editText_hint">Username</string>
+    <string name="password_editText_hint">Password</string>
+    <string name="email_editText_hint">E-Mail</string>
 </resources>
