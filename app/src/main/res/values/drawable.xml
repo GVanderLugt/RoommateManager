@@ -9,7 +9,11 @@
     <drawable name="relative_layout_background">#ffffffff</drawable>
 
     <!-- Nav Drawer List View Drawables -->
-    <drawable name="list_selected">#ff695797</drawable>
+    <drawable name="list_activated">#ff8674b5</drawable>
+    <drawable name="list_selected">#ff8674b5</drawable>
+    <drawable name="list_pressed">#ff584682</drawable>
+    <drawable name="list_txtcolor">#ff000000</drawable>
+    <drawable name="navdrawer_background_color">#ffffffff</drawable>
 
     <!-- Button Drawables -->
     <drawable name="button_pressed">#ff584682</drawable>

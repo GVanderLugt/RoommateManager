@@ -3,6 +3,7 @@ package edu.iupui.gdvander.roommatemanager.app;
 
 import android.app.Activity;
 import android.app.ActionBar;
+import android.graphics.Color;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.ActionBarDrawerToggle;
 import android.support.v4.view.GravityCompat;
@@ -104,13 +105,17 @@ public class NavigationDrawerFragment extends Fragment {
                 getString(R.string.title_section3),
                 getString(R.string.title_section4)};
 
-        //Set the nav drawer's ArrayAdapter
+        //Create the nav drawer's array adapter
         ArrayAdapter<String> navDrawerArrayAdapter = new ArrayAdapter<String>(getActionBar().getThemedContext(),
-                android.R.layout.simple_list_item_activated_1,
+                R.layout.navigation_drawer_item,
                 android.R.id.text1,
                 navDrawerTitles);
+
+        //Set the nav drawer's array adapter
         mDrawerListView.setAdapter(navDrawerArrayAdapter);
+
         mDrawerListView.setItemChecked(mCurrentSelectedPosition, true);
+
         return mDrawerListView;
     }
 
@@ -131,7 +136,6 @@ public class NavigationDrawerFragment extends Fragment {
         // set a custom shadow that overlays the main content when the drawer opens
         mDrawerLayout.setDrawerShadow(R.drawable.drawer_shadow, GravityCompat.START);
         // set up the drawer's list view with items and click listener
-
         ActionBar actionBar = getActionBar();
         actionBar.setDisplayHomeAsUpEnabled(true);
         actionBar.setHomeButtonEnabled(true);
