@@ -13,5 +13,11 @@
         jumboMode="false"
         revision="19.1.0"
         sha1="85f201b380937e61a9dce6ca90ccf6872abbfb67"/>
+    <item
+        dex="C:\Users\Gerrit\AndroidStudioProjects\RoommateManager\app\build\intermediates\pre-dexed\debug\volley-3aeabdeee12c1c347d858b850e7701f86994760b.jar"
+        jar="C:\Users\Gerrit\AndroidStudioProjects\RoommateManager\app\libs\volley.jar"
+        jumboMode="false"
+        revision="19.1.0"
+        sha1="b98684064e53eaafc056e595866a694d11786006"/>
 
 </pre-dex-items>
