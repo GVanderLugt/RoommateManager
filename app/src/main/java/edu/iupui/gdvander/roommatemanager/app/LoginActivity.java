@@ -2,6 +2,7 @@ package edu.iupui.gdvander.roommatemanager.app;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
@@ -26,7 +27,9 @@ public class LoginActivity extends Activity {
     private String username;
     private String password;
     private String responseMessage;
+    private String responseAuthToken;
     private int responseSuccess;
+    private int responseUserID;
     private EditText usernameText;
     private EditText passwordText;
     private JSONObject userInfo = new JSONObject();
@@ -54,15 +57,16 @@ public class LoginActivity extends Activity {
                 username = usernameText.getText().toString();
                 password = passwordText.getText().toString();
 
-                //populate json object
+                //populate json object with user entered data
                 try {
                     userInfo.put("username", username);
                     userInfo.put("password", password);
                 }
                 catch(JSONException e){
-                    System.out.println(e);
+                    Log.e("JSON Exception", e.toString());
                 }
 
+                //Send Volley json POST request including the json object
                 JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(
                         Request.Method.POST, url, userInfo, new Response.Listener<JSONObject>(){
                     @Override
@@ -71,11 +75,26 @@ public class LoginActivity extends Activity {
                         try{
                             responseMessage = response.getString("message");
                             responseSuccess = response.getInt("success");
+                            responseUserID = response.getInt("userID");
+                            responseAuthToken = response.getString("authToken");
+
                         }
                         catch(JSONException e){
                             //Log the exception
                             Log.e("JSONException", e.toString());
                         }
+
+                        //Write the user ID and authenticated login token to shared preferences
+                        SharedPreferences sharedPrefs = getApplicationContext()
+                                .getSharedPreferences("roommatemanager.app.userinfo", MODE_PRIVATE);
+                        SharedPreferences.Editor editor = sharedPrefs.edit();
+                        editor.putInt("userID", responseUserID);
+                        editor.putString("authToken", responseAuthToken);
+                        editor.commit();
+
+                        //Log some basic information for testing
+                        //Log.i("authToken", responseAuthToken);
+                        //Log.i("userID", Integer.toString(responseUserID));
 
                         //Display a toast
                         Toast.makeText(getApplicationContext(),
@@ -92,7 +111,13 @@ public class LoginActivity extends Activity {
                 }, new Response.ErrorListener(){
                     @Override
                     public void onErrorResponse(VolleyError error){
+                        //Log the error
                         Log.e("Response Error", error.toString());
+
+                        //Make a toast
+                        Toast.makeText(getApplicationContext(),
+                                "Network Communication Error",
+                                Toast.LENGTH_SHORT).show();
                     }
                 }){
                     @Override
