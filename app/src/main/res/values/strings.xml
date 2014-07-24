@@ -11,7 +11,6 @@
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
     <string name="action_example">Example action</string>
-    <string name="action_settings">Settings</string>
 
     <!-- Tab indicator color -->
     <string name="tab_indicator_color">#ff8674b5</string>
@@ -29,5 +28,11 @@
     <string name="confirmPassword_editText_hint">Confirm Password</string>
     <string name="email_editText_hint">E-Mail</string>
     <string name="title_activity_register">RegisterActivity</string>
+    <string name="title_activity_splash">SplashActivity</string>
+
+    <!-- Action Bar Strings -->
+    <string name="title_action_logout">Logout</string>
+    <string name="title_action_settings">Settings</string>
+
 
 </resources>

@@ -31,6 +31,7 @@ public class LoginActivity extends Activity {
     private String password;
     private String responseMessage;
     private String responseAuthToken;
+    private String responseUsername;
     private int responseSuccess;
     private int responseUserID;
     private EditText usernameText;
@@ -80,6 +81,7 @@ public class LoginActivity extends Activity {
                             responseSuccess = response.getInt("success");
                             responseUserID = response.getInt("userID");
                             responseAuthToken = response.getString("authToken");
+                            responseUsername = response.getString("username");
 
                         }
                         catch(JSONException e){
@@ -92,11 +94,12 @@ public class LoginActivity extends Activity {
                                     Toast.LENGTH_SHORT).show();
                         }
 
-                        //Write the user ID and authenticated login token to shared preferences
-                        SharedPreferences sharedPrefs = getApplicationContext()
+                        //Write the username, user ID, and authenticated login token to shared preferences
+                        SharedPreferences sharedPref = getApplicationContext()
                                 .getSharedPreferences("roommatemanager.app.userinfo", MODE_PRIVATE);
-                        SharedPreferences.Editor editor = sharedPrefs.edit();
+                        SharedPreferences.Editor editor = sharedPref.edit();
                         editor.putInt("userID", responseUserID);
+                        editor.putString("username", responseUsername);
                         editor.putString("authToken", responseAuthToken);
                         editor.commit();
 
