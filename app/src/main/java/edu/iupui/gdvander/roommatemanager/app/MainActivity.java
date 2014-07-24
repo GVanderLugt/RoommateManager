@@ -3,12 +3,29 @@ package edu.iupui.gdvander.roommatemanager.app;
 import android.app.Activity;
 import android.app.ActionBar;
 import android.app.Fragment;
+import android.content.Intent;
+import android.content.SharedPreferences;
 import android.support.v4.app.FragmentManager;
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.support.v4.widget.DrawerLayout;
+import android.widget.Toast;
+
+import com.android.volley.AuthFailureError;
+import com.android.volley.Request;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.JsonObjectRequest;
+
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.util.HashMap;
+import java.util.Map;
+
 import edu.iupui.gdvander.roommatemanager.app.finances.FinancesFragment;
 import edu.iupui.gdvander.roommatemanager.app.groceries.GroceriesFragment;
 import edu.iupui.gdvander.roommatemanager.app.home.HomeFragment;
@@ -134,6 +151,88 @@ public class MainActivity extends FragmentActivity
         }
     }
 
+    public void logout(){
+        //Log the user out of the system. Throw away auth tokens and user info
+        SharedPreferences sharedPref = getApplicationContext()
+                .getSharedPreferences("roommatemanager.app.userinfo", MODE_PRIVATE);
+        SharedPreferences.Editor editor = sharedPref.edit();
+
+        //Get the user ID and auth token
+        int userID = sharedPref.getInt("userID", -1);
+        String authToken = sharedPref.getString("authToken", "");
+
+        //Remove user info from shared preferences
+        editor.remove("userID");
+        editor.remove("username");
+        editor.remove("authToken");
+        editor.commit();
+
+        //Create json object with user info
+        JSONObject userInfo = new JSONObject();
+        try{
+            userInfo.put("userID", userID);
+            userInfo.put("authToken", authToken);
+        }
+        catch(JSONException e){
+            Log.e("JSON Exception", e.toString());
+        }
+
+        //Set the url
+        String url = "http://192.168.0.10:9080/api/user/logout/";
+
+        //Send Volley json POST request including the json object
+        JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(
+                Request.Method.POST, url, userInfo, new Response.Listener<JSONObject>(){
+            @Override
+            public void onResponse(JSONObject response){
+                //Handle the json response
+                String responseMessage = "";
+                try{
+                    responseMessage = response.getString("message");
+                }
+                catch(JSONException e){
+                    Log.e("JSON Exception", e.toString());
+                }
+
+                Log.i("Response Message", responseMessage);
+
+                //Make a toast
+                Toast.makeText(getApplicationContext(),
+                        "Successfully logged out.",
+                        Toast.LENGTH_SHORT).show();
+
+                //Start the LoginActivity
+                Intent intentLogin = new Intent(MainActivity.this, LoginActivity.class);
+                startActivity(intentLogin);
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                //Log the error
+                Log.e("Response Error", error.toString());
+
+                //Make a toast
+                Toast.makeText(getApplicationContext(),
+                        "Error logging out.",
+                        Toast.LENGTH_SHORT).show();
+
+                //Start the LoginActivity
+                Intent intentLogin = new Intent(MainActivity.this, LoginActivity.class);
+                startActivity(intentLogin);
+            }
+        }){
+            @Override
+            public Map<String,String> getHeaders() throws AuthFailureError {
+                Map<String,String> params = new HashMap<String, String>();
+                params.put("Content-Type","application/x-www-form-urlencoded");
+                return params;
+            }
+        };
+
+        //Access the RequestQueue through the singleton class
+        VolleySingleton.getInstance().addToRequestQueue(jsonObjectRequest);
+    }
+
     public void restoreActionBar() {
         ActionBar actionBar = getActionBar();
         actionBar.setNavigationMode(ActionBar.NAVIGATION_MODE_STANDARD);
@@ -163,6 +262,9 @@ public class MainActivity extends FragmentActivity
         int id = item.getItemId();
         if (id == R.id.action_settings) {
             return true;
+        }
+        if(id == R.id.action_logout){
+            logout();
         }
         return super.onOptionsItemSelected(item);
     }

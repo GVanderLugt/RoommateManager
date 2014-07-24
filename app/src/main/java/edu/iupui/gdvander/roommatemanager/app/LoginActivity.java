@@ -89,9 +89,9 @@ public class LoginActivity extends Activity {
                             Log.e("JSON Exception", e.toString());
 
                             //Make a toast
-                            Toast.makeText(getApplicationContext(),
-                                    "Error retrieving server response.",
-                                    Toast.LENGTH_SHORT).show();
+                            //Toast.makeText(getApplicationContext(),
+                            //        "Error retrieving server response.",
+                            //        Toast.LENGTH_SHORT).show();
                         }
 
                         //Write the username, user ID, and authenticated login token to shared preferences
