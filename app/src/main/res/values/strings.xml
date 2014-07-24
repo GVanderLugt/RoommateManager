@@ -26,5 +26,8 @@
     <!-- EditText Hints -->
     <string name="username_editText_hint">Username</string>
     <string name="password_editText_hint">Password</string>
+    <string name="confirmPassword_editText_hint">Confirm Password</string>
     <string name="email_editText_hint">E-Mail</string>
+    <string name="title_activity_register">RegisterActivity</string>
+
 </resources>

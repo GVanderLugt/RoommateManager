@@ -1,0 +1,66 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    tools:context="edu.iupui.gdvander.roommatemanager.app.RegisterActivity"
+    android:id="@+id/register_layout">
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/editTextUsername"
+        android:layout_marginTop="56dp"
+        android:layout_alignParentTop="true"
+        android:hint="@string/username_editText_hint"
+        android:layout_alignStart="@+id/editTextEmail"
+        android:layout_alignEnd="@+id/editTextEmail" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="textEmailAddress"
+        android:ems="10"
+        android:id="@+id/editTextEmail"
+        android:layout_below="@+id/editTextUsername"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="38dp"
+        android:hint="@string/email_editText_hint" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="textPassword"
+        android:ems="10"
+        android:id="@+id/editTextPassword"
+        android:layout_below="@+id/editTextEmail"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="38dp"
+        android:hint="@string/password_editText_hint" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="textPassword"
+        android:ems="10"
+        android:id="@+id/editTextConfirmPassword"
+        android:layout_below="@+id/editTextPassword"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="38dp"
+        android:hint="@string/confirmPassword_editText_hint"/>
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/createAccount_button_title"
+        android:id="@+id/btnCreateAccount"
+        android:layout_below="@+id/editTextConfirmPassword"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="38dp"
+        android:layout_alignStart="@+id/editTextConfirmPassword"
+        android:layout_alignEnd="@+id/editTextConfirmPassword" />
+
+</RelativeLayout>

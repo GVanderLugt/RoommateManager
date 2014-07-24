@@ -11,13 +11,16 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
+
 import com.android.volley.AuthFailureError;
 import com.android.volley.Request;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
+
 import org.json.JSONException;
 import org.json.JSONObject;
+
 import java.util.HashMap;
 import java.util.Map;
 
@@ -81,7 +84,12 @@ public class LoginActivity extends Activity {
                         }
                         catch(JSONException e){
                             //Log the exception
-                            Log.e("JSONException", e.toString());
+                            Log.e("JSON Exception", e.toString());
+
+                            //Make a toast
+                            Toast.makeText(getApplicationContext(),
+                                    "Error retrieving server response.",
+                                    Toast.LENGTH_SHORT).show();
                         }
 
                         //Write the user ID and authenticated login token to shared preferences
@@ -133,8 +141,18 @@ public class LoginActivity extends Activity {
             }
 
         });
-    }
 
+        //set btnCreateAccount onClickListener
+        Button btnCreateAccount = (Button)findViewById(R.id.btnCreateAccount);
+        btnCreateAccount.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                //Start the register activity
+                Intent intentRegister = new Intent(LoginActivity.this, RegisterActivity.class);
+                startActivity(intentRegister);
+            }
+        });
+    }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
