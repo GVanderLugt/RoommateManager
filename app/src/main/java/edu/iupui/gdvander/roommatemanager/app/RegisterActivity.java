@@ -2,13 +2,16 @@ package edu.iupui.gdvander.roommatemanager.app;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.graphics.Typeface;
 import android.os.Bundle;
+import android.text.method.PasswordTransformationMethod;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.RelativeLayout;
 import android.widget.Toast;
 
 import com.android.volley.Response;
@@ -18,6 +21,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import edu.iupui.gdvander.roommatemanager.handler.JsonObjectRequestHandler;
+import edu.iupui.gdvander.roommatemanager.handler.KeyboardHandler;
 
 
 public class RegisterActivity extends Activity {
@@ -42,11 +46,24 @@ public class RegisterActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register);
 
+        //Hide the keyboard on screen press
+        new KeyboardHandler(
+                (RelativeLayout) findViewById(R.id.register_layout), getApplicationContext()
+        );
+
         //Set the EditText variables
         usernameText = (EditText) findViewById(R.id.editTextUsername);
         emailText = (EditText) findViewById(R.id.editTextEmail);
         passwordText = (EditText) findViewById(R.id.editTextPassword);
         confirmPasswordText = (EditText) findViewById(R.id.editTextConfirmPassword);
+
+        //Set the fonts of the editTexts
+        usernameText.setTypeface(Typeface.DEFAULT);
+        emailText.setTypeface(Typeface.DEFAULT);
+        passwordText.setTypeface(Typeface.DEFAULT);
+        confirmPasswordText.setTypeface(Typeface.DEFAULT);
+        passwordText.setTransformationMethod(new PasswordTransformationMethod());
+        confirmPasswordText.setTransformationMethod(new PasswordTransformationMethod());
 
         //Set the url variable
         url = "/api/user/register/";
@@ -133,7 +150,6 @@ public class RegisterActivity extends Activity {
             }
         });
     }
-
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {

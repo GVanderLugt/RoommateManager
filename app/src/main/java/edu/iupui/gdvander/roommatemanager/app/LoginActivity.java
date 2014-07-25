@@ -3,13 +3,16 @@ package edu.iupui.gdvander.roommatemanager.app;
 import android.app.Activity;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.Typeface;
 import android.os.Bundle;
+import android.text.method.PasswordTransformationMethod;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.RelativeLayout;
 import android.widget.Toast;
 
 import com.android.volley.Response;
@@ -19,6 +22,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import edu.iupui.gdvander.roommatemanager.handler.JsonObjectRequestHandler;
+import edu.iupui.gdvander.roommatemanager.handler.KeyboardHandler;
 
 public class LoginActivity extends Activity {
 
@@ -40,9 +44,19 @@ public class LoginActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
+        //Hide the keyboard on screen press
+        new KeyboardHandler(
+                (RelativeLayout) findViewById(R.id.login_layout), getApplicationContext()
+        );
+
         //Set the EditText variables
         usernameText = (EditText) findViewById(R.id.editTextUsername);
         passwordText = (EditText) findViewById(R.id.editTextPassword);
+
+        //Set editText fonts
+        usernameText.setTypeface(Typeface.DEFAULT);
+        passwordText.setTypeface(Typeface.DEFAULT);
+        passwordText.setTransformationMethod(new PasswordTransformationMethod());
 
         //Set the url variable
         url = "/api/user/login/";

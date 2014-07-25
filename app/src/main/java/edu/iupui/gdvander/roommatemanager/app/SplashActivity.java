@@ -89,6 +89,7 @@ public class SplashActivity extends Activity {
                     //Start MainActivity
                     Intent intentMain = new Intent(SplashActivity.this, MainActivity.class);
                     startActivity(intentMain);
+                    finish();
                 }
             }
         };
@@ -115,6 +116,7 @@ public class SplashActivity extends Activity {
         //Start the LoginActivity
         Intent intentLogin = new Intent(SplashActivity.this, LoginActivity.class);
         startActivity(intentLogin);
+        finish();
     }
 
 
