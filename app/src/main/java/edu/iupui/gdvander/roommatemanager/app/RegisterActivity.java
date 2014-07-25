@@ -11,17 +11,11 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import com.android.volley.AuthFailureError;
-import com.android.volley.Request;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
-import com.android.volley.toolbox.JsonObjectRequest;
 
 import org.json.JSONException;
 import org.json.JSONObject;
-
-import java.util.HashMap;
-import java.util.Map;
 
 import edu.iupui.gdvander.roommatemanager.handler.JsonObjectRequestHandler;
 
@@ -55,7 +49,6 @@ public class RegisterActivity extends Activity {
         confirmPasswordText = (EditText) findViewById(R.id.editTextConfirmPassword);
 
         //Set the url variable
-        //url = "http://192.168.0.10:9080/api/user/register/";
         url = "/api/user/register/";
 
         //Set btnCreateAccount onClickListener
@@ -131,72 +124,12 @@ public class RegisterActivity extends Activity {
 
                     //Use the request handler to send the Volley json POST request
                     requestHandler.post(url, userInfo, responseListener, responseErrorListener);
-
-
-                    /*
-                    //Send Volley json POST request including the json object
-                    JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(
-                            Request.Method.POST, url, userInfo, new Response.Listener<JSONObject>(){
-                        @Override
-                        public void onResponse(JSONObject response){
-                            //Handle the json response
-                            try{
-                                responseMessage = response.getString("message");
-                                responseSuccess = response.getInt("success");
-                            }
-                            catch(JSONException e){
-                                //Log the exception
-                                Log.e("JSON Exception", e.toString());
-
-                                //Display a toast
-                                Toast.makeText(getApplicationContext(),
-                                        "Error retrieving server response.",
-                                        Toast.LENGTH_SHORT).show();
-                            }
-
-                            //Display a toast
-                            Toast.makeText(getApplicationContext(),
-                                    responseMessage,
-                                    Toast.LENGTH_SHORT).show();
-
-                            if(responseSuccess == 1){
-                                //Start the LoginActivity
-                                Intent intentLogin = new Intent(RegisterActivity.this, LoginActivity.class);
-                                startActivity(intentLogin);
-                            }
-                        }
-                    }, new Response.ErrorListener() {
-                        @Override
-                        public void onErrorResponse(VolleyError error) {
-                            //Log the error
-                            Log.e("Response Error", error.toString());
-
-                            //Make a toast
-                            Toast.makeText(getApplicationContext(),
-                                    "Network Communication Error",
-                                    Toast.LENGTH_SHORT).show();
-                        }
-                    }){
-                        @Override
-                        public Map<String,String> getHeaders() throws AuthFailureError {
-                            Map<String,String> params = new HashMap<String,String>();
-                            params.put("Content-Type","application/x-www-form-urlencoded");
-                            return params;
-                        }
-                    };
-
-                    //Access the RequestQueue through the singleton class
-                    VolleySingleton.getInstance().addToRequestQueue(jsonObjectRequest);
-
-                    */
-
                 }
                 else{
                     Toast.makeText(getApplicationContext(),
                             "Passwords do not match.",
                             Toast.LENGTH_SHORT).show();
                 }
-
             }
         });
     }
