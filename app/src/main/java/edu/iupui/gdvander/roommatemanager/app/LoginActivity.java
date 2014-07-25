@@ -12,17 +12,13 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import com.android.volley.AuthFailureError;
-import com.android.volley.Request;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
-import com.android.volley.toolbox.JsonObjectRequest;
 
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.util.HashMap;
-import java.util.Map;
+import edu.iupui.gdvander.roommatemanager.handler.JsonObjectRequestHandler;
 
 public class LoginActivity extends Activity {
 
@@ -37,6 +33,7 @@ public class LoginActivity extends Activity {
     private EditText usernameText;
     private EditText passwordText;
     private JSONObject userInfo = new JSONObject();
+    private JsonObjectRequestHandler requestHandler = new JsonObjectRequestHandler();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,8 +45,7 @@ public class LoginActivity extends Activity {
         passwordText = (EditText) findViewById(R.id.editTextPassword);
 
         //Set the url variable
-        url = "http://192.168.0.10:9080/api/user/login/";
-
+        url = "/api/user/login/";
 
         //Set btnLogin listener
         Button btnLogin = (Button)findViewById(R.id.btnLogin);
@@ -70,9 +66,8 @@ public class LoginActivity extends Activity {
                     Log.e("JSON Exception", e.toString());
                 }
 
-                //Send Volley json POST request including the json object
-                JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(
-                        Request.Method.POST, url, userInfo, new Response.Listener<JSONObject>(){
+                //Set the response listener
+                Response.Listener responseListener = new Response.Listener<JSONObject>(){
                     @Override
                     public void onResponse(JSONObject response){
                         //Handle the json response
@@ -88,10 +83,6 @@ public class LoginActivity extends Activity {
                             //Log the exception
                             Log.e("JSON Exception", e.toString());
 
-                            //Make a toast
-                            //Toast.makeText(getApplicationContext(),
-                            //        "Error retrieving server response.",
-                            //        Toast.LENGTH_SHORT).show();
                         }
 
                         //Write the username, user ID, and authenticated login token to shared preferences
@@ -102,10 +93,6 @@ public class LoginActivity extends Activity {
                         editor.putString("username", responseUsername);
                         editor.putString("authToken", responseAuthToken);
                         editor.commit();
-
-                        //Log some basic information for testing
-                        //Log.i("authToken", responseAuthToken);
-                        //Log.i("userID", Integer.toString(responseUserID));
 
                         //Display a toast
                         Toast.makeText(getApplicationContext(),
@@ -119,7 +106,10 @@ public class LoginActivity extends Activity {
                             startActivity(intentMain);
                         }
                     }
-                }, new Response.ErrorListener(){
+                };
+
+                //Set the error response listener
+                Response.ErrorListener responseErrorListener = new Response.ErrorListener(){
                     @Override
                     public void onErrorResponse(VolleyError error){
                         //Log the error
@@ -130,17 +120,10 @@ public class LoginActivity extends Activity {
                                 "Network Communication Error",
                                 Toast.LENGTH_SHORT).show();
                     }
-                }){
-                    @Override
-                    public Map<String,String> getHeaders() throws AuthFailureError {
-                        Map<String,String> params = new HashMap<String,String>();
-                        params.put("Content-Type","application/x-www-form-urlencoded");
-                        return params;
-                    }
                 };
 
-                //Access the RequestQueue through the singleton class
-                VolleySingleton.getInstance().addToRequestQueue(jsonObjectRequest);
+                //Use the request handler to send the Volley json POST request
+                requestHandler.post(url, userInfo, responseListener, responseErrorListener);
             }
 
         });

@@ -30,6 +30,7 @@ import edu.iupui.gdvander.roommatemanager.app.finances.FinancesFragment;
 import edu.iupui.gdvander.roommatemanager.app.groceries.GroceriesFragment;
 import edu.iupui.gdvander.roommatemanager.app.home.HomeFragment;
 import edu.iupui.gdvander.roommatemanager.app.todo.ToDoFragment;
+import edu.iupui.gdvander.roommatemanager.handler.JsonObjectRequestHandler;
 
 public class MainActivity extends FragmentActivity
         implements NavigationDrawerFragment.NavigationDrawerCallbacks {
@@ -43,6 +44,12 @@ public class MainActivity extends FragmentActivity
      * Used to store the last screen title. For use in {@link #restoreActionBar()}.
      */
     private CharSequence mTitle;
+
+    private String url;
+    private int userID;
+    private String authToken;
+    private JsonObjectRequestHandler requestHandler = new JsonObjectRequestHandler();
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -158,8 +165,8 @@ public class MainActivity extends FragmentActivity
         SharedPreferences.Editor editor = sharedPref.edit();
 
         //Get the user ID and auth token
-        int userID = sharedPref.getInt("userID", -1);
-        String authToken = sharedPref.getString("authToken", "");
+        userID = sharedPref.getInt("userID", -1);
+        authToken = sharedPref.getString("authToken", "");
 
         //Remove user info from shared preferences
         editor.remove("userID");
@@ -178,11 +185,10 @@ public class MainActivity extends FragmentActivity
         }
 
         //Set the url
-        String url = "http://192.168.0.10:9080/api/user/logout/";
+        url = "/api/user/logout/";
 
-        //Send Volley json POST request including the json object
-        JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(
-                Request.Method.POST, url, userInfo, new Response.Listener<JSONObject>(){
+        //Set the response listener
+        Response.Listener responseListener = new Response.Listener<JSONObject>(){
             @Override
             public void onResponse(JSONObject response){
                 //Handle the json response
@@ -205,7 +211,10 @@ public class MainActivity extends FragmentActivity
                 Intent intentLogin = new Intent(MainActivity.this, LoginActivity.class);
                 startActivity(intentLogin);
             }
-        }, new Response.ErrorListener() {
+        };
+
+        //Set the error response listener
+        Response.ErrorListener responseErrorListener = new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
                 //Log the error
@@ -219,18 +228,12 @@ public class MainActivity extends FragmentActivity
                 //Start the LoginActivity
                 Intent intentLogin = new Intent(MainActivity.this, LoginActivity.class);
                 startActivity(intentLogin);
-            }
-        }){
-            @Override
-            public Map<String,String> getHeaders() throws AuthFailureError {
-                Map<String,String> params = new HashMap<String, String>();
-                params.put("Content-Type","application/x-www-form-urlencoded");
-                return params;
+
             }
         };
 
-        //Access the RequestQueue through the singleton class
-        VolleySingleton.getInstance().addToRequestQueue(jsonObjectRequest);
+        //Use the request handler to send the Volley json POST request
+        requestHandler.post(url, userInfo, responseListener, responseErrorListener);
     }
 
     public void restoreActionBar() {
@@ -268,46 +271,4 @@ public class MainActivity extends FragmentActivity
         }
         return super.onOptionsItemSelected(item);
     }
-
-    /**
-     * A placeholder fragment containing a simple view.
-
-    public static class PlaceholderFragment extends Fragment {
-        /**
-         * The fragment argument representing the section number for this
-         * fragment.
-
-        private static final String ARG_SECTION_NUMBER = "section_number";
-
-        /**
-         * Returns a new instance of this fragment for the given section
-         * number.
-
-        public static PlaceholderFragment newInstance(int sectionNumber) {
-            PlaceholderFragment fragment = new PlaceholderFragment();
-            Bundle args = new Bundle();
-            args.putInt(ARG_SECTION_NUMBER, sectionNumber);
-            fragment.setArguments(args);
-            return fragment;
-        }
-
-        public PlaceholderFragment() {
-        }
-
-        @Override
-        public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                Bundle savedInstanceState) {
-            View rootView = inflater.inflate(R.layout.fragment_main, container, false);
-            return rootView;
-        }
-
-        @Override
-        public void onAttach(Activity activity) {
-            super.onAttach(activity);
-            ((MainActivity) activity).onSectionAttached(
-                    getArguments().getInt(ARG_SECTION_NUMBER));
-        }
-    }
-        **/
-
 }

@@ -9,17 +9,13 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Toast;
 
-import com.android.volley.AuthFailureError;
-import com.android.volley.Request;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
-import com.android.volley.toolbox.JsonObjectRequest;
 
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.util.HashMap;
-import java.util.Map;
+import edu.iupui.gdvander.roommatemanager.handler.JsonObjectRequestHandler;
 
 public class SplashActivity extends Activity {
 
@@ -29,6 +25,8 @@ public class SplashActivity extends Activity {
     private String username;
     private int responseSuccess;
     private JSONObject userInfo = new JSONObject();
+    private JsonObjectRequestHandler requestHandler = new JsonObjectRequestHandler();
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -62,17 +60,16 @@ public class SplashActivity extends Activity {
         }
         catch(JSONException e){
             //Log the Exception
-            Log.e("JSON Exception", e.toString());
+            Log.i("JSON Exception checking for user info on splash screen.", e.toString());
         }
 
         //Set the url
-        url = "http://192.168.0.10:9080/api/user/auth/";
+        url = "/api/user/auth/";
 
-        //Send Volley json POST request including the json object
-        JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(
-                Request.Method.POST, url, userInfo, new Response.Listener<JSONObject>(){
+        //Set the response listener
+        Response.Listener responseListener = new Response.Listener<JSONObject>() {
             @Override
-            public void onResponse(JSONObject response){
+            public void onResponse(JSONObject response) {
                 //Handle the json response
                 try{
                     responseSuccess = response.getInt("success");
@@ -82,38 +79,35 @@ public class SplashActivity extends Activity {
                     Log.e("JSON Exception", e.toString());
                 }
 
-                //Display toast
-                Toast.makeText(getApplicationContext(),
-                        ("Logged in as " + username),
-                        Toast.LENGTH_SHORT).show();
-
                 //If the response is equal to 1, the user is logged in
                 if(responseSuccess == 1){
+                    //Display toast
+                    Toast.makeText(getApplicationContext(),
+                            ("Logged in as " + username),
+                            Toast.LENGTH_SHORT).show();
+
                     //Start MainActivity
                     Intent intentMain = new Intent(SplashActivity.this, MainActivity.class);
                     startActivity(intentMain);
                 }
             }
-        }, new Response.ErrorListener(){
+        };
+
+        //Set the error response listener
+        Response.ErrorListener responseErrorListener = new Response.ErrorListener() {
             @Override
-            public void onErrorResponse(VolleyError error){
+            public void onErrorResponse(VolleyError error) {
                 //Log the error
                 Log.e("Response Error", error.toString());
 
                 //Start LoginActivity
                 loginScreen();
-            }
-        }){
-            @Override
-            public Map<String,String> getHeaders() throws AuthFailureError {
-                Map<String,String> params = new HashMap<String,String>();
-                params.put("Content-Type","application/x-www-form-urlencoded");
-                return params;
+
             }
         };
 
-        //Access the RequestQueue through the singleton class
-        VolleySingleton.getInstance().addToRequestQueue(jsonObjectRequest);
+        //Use the request handler to send the Volley json POST request
+        requestHandler.post(url, userInfo, responseListener, responseErrorListener);
 
     }
 

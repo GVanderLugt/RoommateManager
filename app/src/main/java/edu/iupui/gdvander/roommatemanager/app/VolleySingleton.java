@@ -1,12 +1,10 @@
 package edu.iupui.gdvander.roommatemanager.app;
 
 import android.app.Application;
-import android.content.Context;
 import android.text.TextUtils;
 
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
-import com.android.volley.toolbox.ImageLoader;
 import com.android.volley.toolbox.Volley;
 
 public class VolleySingleton extends Application {
@@ -37,7 +35,7 @@ public class VolleySingleton extends Application {
     public RequestQueue getRequestQueue(){
         if(mRequestQueue == null){
             //getApplicationContext() is key, it keeps you from leaking the
-            //Activity or BrodcastReceiver if someone passes one in.
+            //Activity or BroadcastReceiver if someone passes one in.
             mRequestQueue = Volley.newRequestQueue(getApplicationContext());
         }
         return mRequestQueue;
