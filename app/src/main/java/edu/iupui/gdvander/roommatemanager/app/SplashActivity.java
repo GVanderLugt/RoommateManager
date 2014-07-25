@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.os.Handler;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -26,6 +27,10 @@ public class SplashActivity extends Activity {
     private int responseSuccess;
     private JSONObject userInfo = new JSONObject();
     private JsonObjectRequestHandler requestHandler = new JsonObjectRequestHandler();
+    private boolean requestDone = false;
+
+    //Splash screen timer
+    private static int SPLASH_TIME_OUT = 2000;
 
 
     @Override
@@ -36,7 +41,26 @@ public class SplashActivity extends Activity {
         //Hide the action bar
         getActionBar().hide();
 
-        //Check to see if the user is logged in, if not, go to login screen
+        new Handler().postDelayed(new Runnable(){
+            @Override
+            public void run(){
+                //Check to see if the user is logged in after the timer runs out
+                //If the request is done, continue, else wait some more
+                if(requestDone) {
+                    checkForLogin();
+                }
+                else{
+                    new Handler().postDelayed(new Runnable(){
+                        @Override
+                        public void run(){
+                            checkForLogin();
+                        }
+                    }, SPLASH_TIME_OUT);
+                }
+            }
+        }, SPLASH_TIME_OUT);
+
+        //Get user information from shared preferences
         SharedPreferences sharedPref = getApplicationContext()
                 .getSharedPreferences("roommatemanager.app.userinfo", MODE_PRIVATE);
 
@@ -45,15 +69,7 @@ public class SplashActivity extends Activity {
         authToken = sharedPref.getString("authToken", "");
         username = sharedPref.getString("username", "");
 
-        //If the user ID or token are not found, go to LoginActivity
-        if(userID == -1){
-            loginScreen();
-        }
-        if(authToken.equals("")){
-            loginScreen();
-        }
-
-        //Populate the json object
+        //Populate the json object with user info
         try{
             userInfo.put("userID", userID);
             userInfo.put("authToken", authToken);
@@ -72,6 +88,7 @@ public class SplashActivity extends Activity {
             public void onResponse(JSONObject response) {
                 //Handle the json response
                 try{
+                    //Set the response success code
                     responseSuccess = response.getInt("success");
                 }
                 catch(JSONException e){
@@ -79,18 +96,8 @@ public class SplashActivity extends Activity {
                     Log.e("JSON Exception", e.toString());
                 }
 
-                //If the response is equal to 1, the user is logged in
-                if(responseSuccess == 1){
-                    //Display toast
-                    Toast.makeText(getApplicationContext(),
-                            ("Logged in as " + username),
-                            Toast.LENGTH_SHORT).show();
-
-                    //Start MainActivity
-                    Intent intentMain = new Intent(SplashActivity.this, MainActivity.class);
-                    startActivity(intentMain);
-                    finish();
-                }
+                //Set requestDone to true
+                requestDone = true;
             }
         };
 
@@ -101,17 +108,40 @@ public class SplashActivity extends Activity {
                 //Log the error
                 Log.e("Response Error", error.toString());
 
-                //Start LoginActivity
-                loginScreen();
-
+                //Set requestDone to true
+                requestDone = true;
             }
         };
 
         //Use the request handler to send the Volley json POST request
         requestHandler.post(url, userInfo, responseListener, responseErrorListener);
-
     }
 
+    private void checkForLogin(){
+        //If the user ID or token are not found, go to LoginActivity
+        if(userID == -1){
+            loginScreen();
+        }
+        else if(authToken.equals("")){
+            loginScreen();
+        }
+
+        //If the response is equal to 1, the user is logged in
+        else if(responseSuccess == 1){
+            //Display toast
+            Toast.makeText(getApplicationContext(),
+                    ("Logged in as " + username),
+                    Toast.LENGTH_SHORT).show();
+
+            //Start MainActivity
+            Intent intentMain = new Intent(SplashActivity.this, MainActivity.class);
+            startActivity(intentMain);
+            finish();
+        }
+        else{
+            loginScreen();
+        }
+    }
     private void loginScreen(){
         //Start the LoginActivity
         Intent intentLogin = new Intent(SplashActivity.this, LoginActivity.class);

@@ -118,6 +118,7 @@ public class LoginActivity extends Activity {
                             //Start the main activity
                             Intent intentMain = new Intent(LoginActivity.this, MainActivity.class);
                             startActivity(intentMain);
+                            finish();
                         }
                     }
                 };
@@ -150,6 +151,7 @@ public class LoginActivity extends Activity {
                 //Start the register activity
                 Intent intentRegister = new Intent(LoginActivity.this, RegisterActivity.class);
                 startActivity(intentRegister);
+                finish();
             }
         });
     }

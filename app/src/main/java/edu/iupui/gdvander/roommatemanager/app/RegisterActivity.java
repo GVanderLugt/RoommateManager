@@ -121,6 +121,7 @@ public class RegisterActivity extends Activity {
                                 //Start the LoginActivity
                                 Intent intentLogin = new Intent(RegisterActivity.this, LoginActivity.class);
                                 startActivity(intentLogin);
+                                finish();
                             }
                         }
                     };
