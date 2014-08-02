@@ -10,6 +10,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import edu.iupui.gdvander.roommatemanager.app.R;
+import edu.iupui.gdvander.roommatemanager.app.groceries.adapters.GroceriesPagerAdapter;
 
 public class GroceriesFragment extends Fragment {
     @Override

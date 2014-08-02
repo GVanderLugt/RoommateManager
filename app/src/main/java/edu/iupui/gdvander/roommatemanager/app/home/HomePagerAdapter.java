@@ -4,6 +4,9 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.app.Fragment;
 
+import edu.iupui.gdvander.roommatemanager.app.home.tabs.DetailsTab;
+import edu.iupui.gdvander.roommatemanager.app.home.tabs.HomeTab;
+
 public class HomePagerAdapter extends FragmentPagerAdapter {
 
     public HomePagerAdapter(FragmentManager fm) {super(fm);}

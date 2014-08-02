@@ -1,8 +1,13 @@
-package edu.iupui.gdvander.roommatemanager.app.groceries;
+package edu.iupui.gdvander.roommatemanager.app.groceries.adapters;
 
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.app.Fragment;
+
+import edu.iupui.gdvander.roommatemanager.app.groceries.tabs.PersonalListTab;
+import edu.iupui.gdvander.roommatemanager.app.groceries.tabs.SharedListTab;
+import edu.iupui.gdvander.roommatemanager.app.groceries.tabs.ShoppingListTab;
+import edu.iupui.gdvander.roommatemanager.app.groceries.tabs.TestGroceryItemTabFragment;
 
 public class GroceriesPagerAdapter extends FragmentPagerAdapter {
 
@@ -16,6 +21,7 @@ public class GroceriesPagerAdapter extends FragmentPagerAdapter {
                 return new ShoppingListTab();
             case 1:
                 return new PersonalListTab();
+                //return new TestGroceryItemTabFragment();
             case 2:
                 return new SharedListTab();
         }

@@ -4,6 +4,12 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.app.Fragment;
 
+import edu.iupui.gdvander.roommatemanager.app.finances.tabs.DebtsTab;
+import edu.iupui.gdvander.roommatemanager.app.finances.tabs.ExpensesTab;
+import edu.iupui.gdvander.roommatemanager.app.finances.tabs.PersonalTransactionTab;
+import edu.iupui.gdvander.roommatemanager.app.finances.tabs.SharedTransactionTab;
+import edu.iupui.gdvander.roommatemanager.app.finances.tabs.TransferTab;
+
 public class FinancesPagerAdapter extends FragmentPagerAdapter {
 
     public FinancesPagerAdapter(FragmentManager fm) {super(fm);}

@@ -4,8 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     tools:context=".groceries/PersonalListTab">
 
-    <item android:id="@+id/action_example"
-        android:title="action_add"
+    <item android:id="@+id/action_add"
+        android:title="Add Item"
         android:icon="@drawable/ic_action_new"
         android:showAsAction="ifRoom"/>
 

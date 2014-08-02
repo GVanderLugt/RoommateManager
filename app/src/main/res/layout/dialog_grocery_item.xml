@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <EditText
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/editTextGroceryItemDialog"
+        android:hint="@string/item_name_hint"
+        android:layout_marginTop="10dp"
+        android:layout_below="@+id/groceryItemDialogTitle"
+        android:layout_centerHorizontal="true" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="@string/title_addItem_dialog"
+        android:id="@+id/groceryItemDialogTitle"
+        android:background="@drawable/actionbar_background"
+        android:gravity="center"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentStart="true"
+        android:height="50dp"
+        android:textColor="#ffff"/>
+
+    <CheckBox
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="In-Stock"
+        android:id="@+id/checkBoxInStock"
+        android:layout_below="@+id/editTextGroceryItemDialog"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="10dp"
+        android:checked="false"
+        android:layout_marginBottom="10dp" />
+
+</RelativeLayout>

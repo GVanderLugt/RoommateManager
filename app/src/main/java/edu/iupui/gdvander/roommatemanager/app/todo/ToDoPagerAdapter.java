@@ -4,6 +4,9 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.app.Fragment;
 
+import edu.iupui.gdvander.roommatemanager.app.todo.tabs.MyToDoTab;
+import edu.iupui.gdvander.roommatemanager.app.todo.tabs.SharedToDoTab;
+
 public class ToDoPagerAdapter extends FragmentPagerAdapter {
 
     public ToDoPagerAdapter(FragmentManager fm) {super(fm);}

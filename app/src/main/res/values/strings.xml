@@ -31,8 +31,14 @@
     <string name="title_activity_splash">SplashActivity</string>
 
     <!-- Action Bar Strings -->
-    <string name="title_action_logout">Logout</string>
+    <string name="title_action_logout">Log Out</string>
     <string name="title_action_settings">Settings</string>
+
+    <!-- Dialog Strings -->
+    <string name="item_name_hint">Item Name</string>
+    <string name="title_grocery_positive">Add Item</string>
+    <string name="title_grocery_negative">Cancel</string>
+    <string name="title_addItem_dialog">Create New Item</string>
 
 
 </resources>

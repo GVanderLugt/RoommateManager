@@ -1,4 +1,4 @@
-package edu.iupui.gdvander.roommatemanager.app.finances;
+package edu.iupui.gdvander.roommatemanager.app.groceries.tabs;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -8,10 +8,10 @@ import android.view.ViewGroup;
 
 import edu.iupui.gdvander.roommatemanager.app.R;
 
-public class DebtsTab extends Fragment {
+public class ShoppingListTab extends Fragment {
 
 
-    public DebtsTab() {
+    public ShoppingListTab() {
         // Required empty public constructor
     }
 
@@ -20,7 +20,7 @@ public class DebtsTab extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_debts_tab, container, false);
+        return inflater.inflate(R.layout.fragment_shopping_list_tab, container, false);
     }
 
 
