@@ -9,9 +9,12 @@
         android:layout_height="wrap_content"
         android:id="@+id/editTextGroceryItemDialog"
         android:hint="@string/item_name_hint"
+        android:maxLength="30"
+        android:maxLines="1"
         android:layout_marginTop="10dp"
         android:layout_below="@+id/groceryItemDialogTitle"
-        android:layout_centerHorizontal="true" />
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="15dp" />
 
     <TextView
         android:layout_width="match_parent"
@@ -25,16 +28,5 @@
         android:layout_alignParentStart="true"
         android:height="50dp"
         android:textColor="#ffff"/>
-
-    <CheckBox
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="In-Stock"
-        android:id="@+id/checkBoxInStock"
-        android:layout_below="@+id/editTextGroceryItemDialog"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="10dp"
-        android:checked="false"
-        android:layout_marginBottom="10dp" />
 
 </RelativeLayout>

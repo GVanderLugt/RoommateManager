@@ -21,4 +21,7 @@
     <drawable name="button_default">#ff8674b5</drawable>
     <drawable name="button_txtcolor">#ffffffff</drawable>
 
+    <!-- Tab background color for listview -->
+    <drawable name="tab_background_color">#ff383442</drawable>
+
 </resources>

@@ -1,8 +1,10 @@
 package edu.iupui.gdvander.roommatemanager.app.groceries;
 
+import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.Dialog;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.DialogFragment;
 import android.view.LayoutInflater;
@@ -14,7 +16,6 @@ public class PersonalItemDialog extends DialogFragment {
 
     EditText itemNameText;
     String itemName;
-    int itemStatus = 0;
 
     @Override
     public Dialog onCreateDialog(Bundle savedInstanceState){
@@ -40,13 +41,25 @@ public class PersonalItemDialog extends DialogFragment {
                 //Get the item name from the EditText
                 itemName = itemNameText.getText().toString();
 
-                //Add the item
+                //Create a Bundle and add data from EditText
+                Bundle bundle = new Bundle();
+                bundle.putString("itemName", itemName);
 
+                //Add the bundle to the intent
+                Intent intent = getActivity().getIntent();
+                intent.putExtras(bundle);
+
+                //Call onActivityResult from the target fragment and pass the request code/intent
+                getTargetFragment().onActivityResult(
+                        getTargetRequestCode(), Activity.RESULT_OK, intent
+                );
             }});
         builder.setNegativeButton(R.string.title_grocery_negative, new DialogInterface.OnClickListener() {
             public void onClick(DialogInterface dialog, int id) {
                 //Cancel the dialog
-                PersonalItemDialog.this.getDialog().cancel();
+                getTargetFragment().onActivityResult(
+                        getTargetRequestCode(), Activity.RESULT_CANCELED, getActivity().getIntent()
+                );
             }
         });
 
