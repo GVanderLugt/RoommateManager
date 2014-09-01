@@ -41,4 +41,19 @@ public class JsonObjectRequestHandler {
 
     }
 
+    public void get(String path,
+                    Response.Listener<JSONObject> listener,
+                    Response.ErrorListener errorListener){
+        //Construct the url
+        url = (baseURL + path);
+
+        //Send Volley json GET request including the given json object and listeners
+        JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(
+                Request.Method.GET, url, null, listener, errorListener){
+        };
+
+        //Access the RequestQueue through the singleton class
+        VolleySingleton.getInstance().addToRequestQueue(jsonObjectRequest);
+    }
+
 }
