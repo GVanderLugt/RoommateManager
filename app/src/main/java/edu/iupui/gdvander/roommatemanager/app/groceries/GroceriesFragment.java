@@ -1,5 +1,12 @@
 package edu.iupui.gdvander.roommatemanager.app.groceries;
 
+/**
+ * Created by Gerrit VanderLugt.
+ * Title: GroceriesFragment.java
+ * Purpose: ListFragment that will display all of the grocery items belonging to the user's
+ *  household.
+ */
+
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
@@ -14,13 +21,12 @@ import android.view.ViewGroup;
 import java.util.ArrayList;
 
 import edu.iupui.gdvander.roommatemanager.app.R;
-import edu.iupui.gdvander.roommatemanager.app.groceries.adapters.PersonalGroceryJsonAdapter;
 
 public class GroceriesFragment extends ListFragment {
 
     public static final int GROCERY_FRAGMENT = 1;
-    ArrayList<String> values = new ArrayList<String>();
-    PersonalGroceryJsonAdapter adapter;
+    ArrayList<GroceryItem> values = new ArrayList<GroceryItem>();
+    GroceryArrayAdapter adapter;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -36,7 +42,7 @@ public class GroceriesFragment extends ListFragment {
     public void onActivityCreated(Bundle savedInstanceState){
         super.onActivityCreated(savedInstanceState);
         //Create the list adapter
-        adapter = new PersonalGroceryJsonAdapter(getActivity(), values);
+        adapter = new GroceryArrayAdapter(getActivity(), values);
 
         //Set the list adapter
         setListAdapter(adapter);
@@ -45,7 +51,6 @@ public class GroceriesFragment extends ListFragment {
     @Override
     public void onCreateOptionsMenu(Menu menu, MenuInflater inflater){
         inflater.inflate(R.menu.grocery, menu);
-
     }
 
     @Override
@@ -72,8 +77,9 @@ public class GroceriesFragment extends ListFragment {
     }
 
     public void addItem(String itemName){
-        //Add an item to the list
-        adapter.add(itemName);
+        //Add new GroceryItem to the list
+        GroceryItem groceryItem = new GroceryItem(1, itemName, 0, 1);
+        adapter.add(groceryItem);
         adapter.notifyDataSetChanged();
     }
 
@@ -85,7 +91,7 @@ public class GroceriesFragment extends ListFragment {
                     //Get the bundled extras from the given intent
                     Bundle bundle = data.getExtras();
 
-                    //Add an item to the list
+                    //Add an item to the list, pass item name to addItem
                     this.addItem(bundle.get("itemName").toString());
                 }
                 else if(resultCode == Activity.RESULT_CANCELED){

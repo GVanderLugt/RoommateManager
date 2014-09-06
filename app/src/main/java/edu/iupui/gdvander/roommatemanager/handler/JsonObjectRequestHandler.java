@@ -1,5 +1,11 @@
 package edu.iupui.gdvander.roommatemanager.handler;
 
+/**
+ * Created by Gerrit VanderLugt
+ * Title: JsonObjectRequestHandler.java
+ * Purpose: Handle http requests using Volley's JSONObjectRequests.
+ */
+
 import org.json.JSONObject;
 
 import com.android.volley.AuthFailureError;
