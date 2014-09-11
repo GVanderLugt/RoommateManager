@@ -12,8 +12,12 @@ import android.widget.EditText;
 
 import edu.iupui.gdvander.roommatemanager.app.R;
 
-public class PersonalItemDialog extends DialogFragment {
-
+/**
+ * Created by Gerrit on 9/1/2014.
+ * Title: GroceryItemDialog
+ * Purpose: A dialog used to get user input from the user to create a new grocery list item.
+ */
+public class GroceryItemDialog extends DialogFragment {
     EditText itemNameText;
     String itemName;
 

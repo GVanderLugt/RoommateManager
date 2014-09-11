@@ -1,16 +1,19 @@
-<android.support.v4.view.ViewPager
+<RelativeLayout
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
     xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/pager"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="@drawable/relative_layout_background">
+    android:background="@drawable/tab_background_color">
 
-    <android.support.v4.view.PagerTabStrip
-        android:id="@+id/pager_tab_strip"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_gravity="top"
-        android:textColor="#000000"
-        />
+    <ListView
+        android:layout_width="fill_parent"
+        android:layout_height="match_parent"
+        android:id="@android:id/list"
+        android:layout_centerVertical="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:divider="@drawable/tab_background_color"
+        android:dividerHeight="5dp"
+        android:layout_marginTop="10dp" />
 
-</android.support.v4.view.ViewPager>
+</RelativeLayout>
