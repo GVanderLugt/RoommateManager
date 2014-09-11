@@ -3,7 +3,6 @@ package edu.iupui.gdvander.roommatemanager.app;
 
 import android.app.Activity;
 import android.app.ActionBar;
-import android.graphics.Color;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.ActionBarDrawerToggle;
 import android.support.v4.view.GravityCompat;
@@ -21,7 +20,6 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
-import android.widget.Toast;
 
 /**
  * Fragment used for managing interactions for and presentation of a navigation drawer.
@@ -99,7 +97,7 @@ public class NavigationDrawerFragment extends Fragment {
             }
         });
 
-        //Array of nav drawer titles
+        //Array of navigation drawer titles
         String[] navDrawerTitles = new String[]{getString(R.string.title_section1),
                 getString(R.string.title_section2),
                 getString(R.string.title_section3),

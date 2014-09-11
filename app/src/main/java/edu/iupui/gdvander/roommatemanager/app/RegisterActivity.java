@@ -1,5 +1,11 @@
 package edu.iupui.gdvander.roommatemanager.app;
 
+/**
+ * Created by Gerrit VanderLugt.
+ * Title: RegisterActivity.java
+ * Purpose: Register a new user in the system.
+ */
+
 import android.app.Activity;
 import android.content.Intent;
 import android.graphics.Typeface;
@@ -23,7 +29,6 @@ import org.json.JSONObject;
 import edu.iupui.gdvander.roommatemanager.handler.JsonObjectRequestHandler;
 import edu.iupui.gdvander.roommatemanager.handler.KeyboardHandler;
 
-
 public class RegisterActivity extends Activity {
 
     private String url;
@@ -46,12 +51,13 @@ public class RegisterActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register);
 
-        //Hide the keyboard on screen press
+        //Hide the keyboard when the view behind it is selected
         new KeyboardHandler(
+                //Pass the view to the KeyboardHandler
                 (RelativeLayout) findViewById(R.id.register_layout), getApplicationContext()
         );
 
-        //Set the EditText variables
+        //Set the EditText member variables
         usernameText = (EditText) findViewById(R.id.editTextUsername);
         emailText = (EditText) findViewById(R.id.editTextEmail);
         passwordText = (EditText) findViewById(R.id.editTextPassword);
@@ -65,7 +71,7 @@ public class RegisterActivity extends Activity {
         passwordText.setTransformationMethod(new PasswordTransformationMethod());
         confirmPasswordText.setTransformationMethod(new PasswordTransformationMethod());
 
-        //Set the url variable
+        //Set the url member variable
         url = "/api/user/register/";
 
         //Set btnCreateAccount onClickListener
@@ -90,6 +96,7 @@ public class RegisterActivity extends Activity {
                         userInfo.put("password", password);
                     }
                     catch(JSONException e){
+                        //Log the exception
                         Log.e("JSON Exception", e.toString());
                     }
 
@@ -99,6 +106,7 @@ public class RegisterActivity extends Activity {
                         public void onResponse(JSONObject response){
                             //Handle the json response
                             try{
+                                //Set variables with json response
                                 responseMessage = response.getString("message");
                                 responseSuccess = response.getInt("success");
                             }
@@ -144,6 +152,7 @@ public class RegisterActivity extends Activity {
                     requestHandler.post(url, userInfo, responseListener, responseErrorListener);
                 }
                 else{
+                    //Make a toast
                     Toast.makeText(getApplicationContext(),
                             "Passwords do not match.",
                             Toast.LENGTH_SHORT).show();

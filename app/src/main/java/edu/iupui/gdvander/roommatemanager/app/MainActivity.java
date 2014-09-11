@@ -1,8 +1,13 @@
 package edu.iupui.gdvander.roommatemanager.app;
 
-import android.app.Activity;
+/**
+ * Created by Gerrit VanderLugt.
+ * Title: MainActivity.java
+ * Purpose: This is the main activity for the application. It is a FragmentActivity that implements
+ *   NavigationDrawerFragment.
+ */
+
 import android.app.ActionBar;
-import android.app.Fragment;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.support.v4.app.FragmentManager;
@@ -14,17 +19,11 @@ import android.view.MenuItem;
 import android.support.v4.widget.DrawerLayout;
 import android.widget.Toast;
 
-import com.android.volley.AuthFailureError;
-import com.android.volley.Request;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
-import com.android.volley.toolbox.JsonObjectRequest;
 
 import org.json.JSONException;
 import org.json.JSONObject;
-
-import java.util.HashMap;
-import java.util.Map;
 
 import edu.iupui.gdvander.roommatemanager.app.finances.FinancesFragment;
 import edu.iupui.gdvander.roommatemanager.app.groceries.GroceriesFragment;
@@ -56,6 +55,7 @@ public class MainActivity extends FragmentActivity
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        //Set mNavigationDrawerFragment's layout.
         mNavigationDrawerFragment = (NavigationDrawerFragment)
                 getSupportFragmentManager().findFragmentById(R.id.navigation_drawer);
         mTitle = getTitle();
@@ -78,8 +78,8 @@ public class MainActivity extends FragmentActivity
         FragmentManager fragmentManager = getSupportFragmentManager();
 
         //Set initial title
-        mTitle = "Home";
-        setTitle(mTitle);
+        //mTitle = "Home";
+        //setTitle(mTitle);
 
         //Switch to the fragment selected
         switch(position){
@@ -159,7 +159,7 @@ public class MainActivity extends FragmentActivity
     }
 
     public void logout(){
-        //Log the user out of the system. Throw away auth tokens and user info
+        //Log the user out of the system. Remove auth tokens and user info
         SharedPreferences sharedPref = getApplicationContext()
                 .getSharedPreferences("roommatemanager.app.userinfo", MODE_PRIVATE);
         SharedPreferences.Editor editor = sharedPref.edit();
@@ -197,9 +197,11 @@ public class MainActivity extends FragmentActivity
                     responseMessage = response.getString("message");
                 }
                 catch(JSONException e){
+                    //Log the exception
                     Log.e("JSON Exception", e.toString());
                 }
 
+                //Log the response logout response message
                 Log.i("Response Message", responseMessage);
 
                 //Make a toast

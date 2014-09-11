@@ -1,5 +1,12 @@
 package edu.iupui.gdvander.roommatemanager.app;
 
+/**
+ * Created by Gerrit VanderLugt.
+ * Title: SplashActivity.java
+ * Purpose: Display a splash screen when the application is opened. Check to see if the user
+ *   is already logged in. If not, redirect to the login screen.
+ */
+
 import android.app.Activity;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -44,7 +51,7 @@ public class SplashActivity extends Activity {
         new Handler().postDelayed(new Runnable(){
             @Override
             public void run(){
-                //Check to see if the user is logged in after the timer runs out
+                //Check to see if the user is logged in after the timer runs out.
                 //If the request is done, continue, else wait some more
                 if(requestDone) {
                     checkForLogin();
@@ -69,7 +76,7 @@ public class SplashActivity extends Activity {
         authToken = sharedPref.getString("authToken", "");
         username = sharedPref.getString("username", "");
 
-        //Populate the json object with user info
+        //Populate the json object with user information
         try{
             userInfo.put("userID", userID);
             userInfo.put("authToken", authToken);
@@ -118,7 +125,7 @@ public class SplashActivity extends Activity {
     }
 
     private void checkForLogin(){
-        //If the user ID or token are not found, go to LoginActivity
+        //If the user ID or token are not found, redirect to LoginActivity
         if(userID == -1){
             loginScreen();
         }
@@ -139,6 +146,7 @@ public class SplashActivity extends Activity {
             finish();
         }
         else{
+            //Redirect to the login activity
             loginScreen();
         }
     }

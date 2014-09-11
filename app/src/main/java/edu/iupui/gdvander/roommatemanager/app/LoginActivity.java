@@ -1,5 +1,11 @@
 package edu.iupui.gdvander.roommatemanager.app;
 
+/**
+ * Created by Gerrit VanderLugt.
+ * Title: LoginActivity.java
+ * Purpose: Log the user into the system.
+ */
+
 import android.app.Activity;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -44,8 +50,9 @@ public class LoginActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
-        //Hide the keyboard on screen press
+        //Hide the keyboard when the view behind it is selected
         new KeyboardHandler(
+                //Pass the layout to the KeyboardHandler
                 (RelativeLayout) findViewById(R.id.login_layout), getApplicationContext()
         );
 
@@ -77,6 +84,7 @@ public class LoginActivity extends Activity {
                     userInfo.put("password", password);
                 }
                 catch(JSONException e){
+                    //Log the exception
                     Log.e("JSON Exception", e.toString());
                 }
 
@@ -86,6 +94,7 @@ public class LoginActivity extends Activity {
                     public void onResponse(JSONObject response){
                         //Handle the json response
                         try{
+                            //Assign member variables upon Json Response
                             responseMessage = response.getString("message");
                             responseSuccess = response.getInt("success");
                             responseUserID = response.getInt("userID");
