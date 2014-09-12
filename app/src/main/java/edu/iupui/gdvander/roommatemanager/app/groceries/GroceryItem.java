@@ -35,7 +35,7 @@ public class GroceryItem {
     }
 
     public void changeStatus(){
-        //Change the status of the item between 1 and 0
+        //Toggle the status of the item between 1 and 0
         if(status == 0){
             status = 1;
         }

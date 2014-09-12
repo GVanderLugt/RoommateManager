@@ -4,13 +4,14 @@ package edu.iupui.gdvander.roommatemanager.app.groceries;
  * Created by Gerrit VanderLugt.
  * Title: GroceriesFragment.java
  * Purpose: ListFragment that will display all of the grocery items belonging to the user's
- *  household.
+ *  household. Also allows the user to add and create new items.
  */
 
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.ListFragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -25,8 +26,8 @@ import edu.iupui.gdvander.roommatemanager.app.R;
 public class GroceriesFragment extends ListFragment {
 
     public static final int GROCERY_FRAGMENT = 1;
-    ArrayList<GroceryItem> values = new ArrayList<GroceryItem>();
-    GroceryArrayAdapter adapter;
+    private ArrayList<GroceryItem> values = new ArrayList<GroceryItem>();
+    private GroceryArrayAdapter adapter;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -50,6 +51,7 @@ public class GroceriesFragment extends ListFragment {
 
     @Override
     public void onCreateOptionsMenu(Menu menu, MenuInflater inflater){
+        //Display the grocery menu
         inflater.inflate(R.menu.grocery, menu);
     }
 
@@ -58,6 +60,7 @@ public class GroceriesFragment extends ListFragment {
         //handle item selection
         switch(item.getItemId()){
             case R.id.action_add:
+                //When the add button is selected in the menu, display dialog to create item
                 this.newItemDialog();
                 return true;
             default:
@@ -83,10 +86,12 @@ public class GroceriesFragment extends ListFragment {
         adapter.notifyDataSetChanged();
     }
 
+    //OnActivityResult is called when the GroceryItemDialog is exited
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data){
         switch(requestCode){
             case GROCERY_FRAGMENT:
+                //If the dialog returned RESULT_OK, create a new item.
                 if(resultCode == Activity.RESULT_OK){
                     //Get the bundled extras from the given intent
                     Bundle bundle = data.getExtras();
@@ -96,6 +101,8 @@ public class GroceriesFragment extends ListFragment {
                 }
                 else if(resultCode == Activity.RESULT_CANCELED){
                     //Executed if cancel button pressed in dialog
+                    //Log that the dialog was excited
+                    Log.i("GroceryItemDialog", "Response: RESULT_CANCELED");
                 }
         }
     }

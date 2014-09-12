@@ -3,7 +3,7 @@ package edu.iupui.gdvander.roommatemanager.handler;
 /**
  * Created by Gerrit VanderLugt
  * Title: JsonObjectRequestHandler.java
- * Purpose: Handle http requests using Volley's JSONObjectRequests.
+ * Purpose: Handle http requests using Volley's JSONObjectRequest.
  */
 
 import org.json.JSONObject;
@@ -20,7 +20,11 @@ import edu.iupui.gdvander.roommatemanager.app.VolleySingleton;
 
 public class JsonObjectRequestHandler {
 
+    //Declare the base url to be used. Should be where the API is hosted.  In this case, localhost.
     private String baseURL = "http://192.168.0.10:9080";
+
+    //Initialize the url variable. This will be added to the base URL and is specified by the
+    //class implementing the request.
     private String url;
 
     public void post(String path,

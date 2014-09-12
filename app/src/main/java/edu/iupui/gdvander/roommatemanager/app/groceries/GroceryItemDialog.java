@@ -15,11 +15,11 @@ import edu.iupui.gdvander.roommatemanager.app.R;
 /**
  * Created by Gerrit on 9/1/2014.
  * Title: GroceryItemDialog
- * Purpose: A dialog used to get user input from the user to create a new grocery list item.
+ * Purpose: A dialog used to get input from the user to create a new grocery list item.
  */
 public class GroceryItemDialog extends DialogFragment {
-    EditText itemNameText;
-    String itemName;
+    protected EditText itemNameText;
+    protected String itemName;
 
     @Override
     public Dialog onCreateDialog(Bundle savedInstanceState){
