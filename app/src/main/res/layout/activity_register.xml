@@ -13,11 +13,12 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/editTextUsername"
-        android:layout_marginTop="56dp"
-        android:layout_alignParentTop="true"
         android:hint="@string/username_editText_hint"
-        android:layout_alignStart="@+id/editTextEmail"
-        android:layout_alignEnd="@+id/editTextEmail" />
+        android:layout_alignParentTop="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginLeft="25dp"
+        android:layout_alignParentEnd="true"
+        android:layout_marginRight="25dp" />
 
     <EditText
         android:layout_width="wrap_content"
@@ -26,9 +27,10 @@
         android:ems="10"
         android:id="@+id/editTextEmail"
         android:layout_below="@+id/editTextUsername"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="38dp"
-        android:hint="@string/email_editText_hint" />
+        android:layout_marginTop="10dp"
+        android:hint="@string/email_editText_hint"
+        android:layout_alignStart="@+id/editTextUsername"
+        android:layout_alignEnd="@+id/editTextUsername" />
 
     <EditText
         android:layout_width="wrap_content"
@@ -37,9 +39,10 @@
         android:ems="10"
         android:id="@+id/editTextPassword"
         android:layout_below="@+id/editTextEmail"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="38dp"
-        android:hint="@string/password_editText_hint" />
+        android:layout_marginTop="10dp"
+        android:hint="@string/password_editText_hint"
+        android:layout_alignStart="@+id/editTextUsername"
+        android:layout_alignEnd="@+id/editTextUsername" />
 
     <EditText
         android:layout_width="wrap_content"
@@ -48,19 +51,69 @@
         android:ems="10"
         android:id="@+id/editTextConfirmPassword"
         android:layout_below="@+id/editTextPassword"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="38dp"
-        android:hint="@string/confirmPassword_editText_hint"/>
+        android:layout_marginTop="10dp"
+        android:hint="@string/confirmPassword_editText_hint"
+        android:layout_alignStart="@+id/editTextUsername"
+        android:layout_alignEnd="@+id/editTextUsername" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:id="@+id/editTextHouseName"
+        android:layout_below="@+id/editTextConfirmPassword"
+        android:layout_marginTop="50dp"
+        android:hint="@string/houseName_editText_hint"
+        android:layout_alignStart="@+id/editTextUsername"
+        android:layout_alignEnd="@+id/editTextUsername" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="textPassword"
+        android:ems="10"
+        android:id="@+id/editTextHousePassword"
+        android:layout_below="@+id/editTextHouseName"
+        android:layout_marginTop="10dp"
+        android:hint="@string/housePassword_editText_hint"
+        android:layout_alignStart="@+id/editTextUsername"
+        android:layout_alignEnd="@+id/editTextUsername"/>
 
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/createAccount_button_title"
         android:id="@+id/btnCreateAccount"
-        android:layout_below="@+id/editTextConfirmPassword"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="38dp"
-        android:layout_alignStart="@+id/editTextConfirmPassword"
-        android:layout_alignEnd="@+id/editTextConfirmPassword" />
+        android:layout_below="@+id/radioGroup"
+        android:layout_alignStart="@+id/editTextUsername"
+        android:layout_alignEnd="@+id/editTextUsername"
+        android:layout_marginTop="20dp" />
+
+    <RadioGroup xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/radioGroup"
+        android:orientation="horizontal"
+        android:layout_below="@+id/editTextHousePassword"
+        android:layout_alignEnd="@+id/editTextHousePassword"
+        android:layout_alignStart="@+id/editTextHousePassword"
+        android:gravity="center"
+        android:layout_marginTop="10dp">
+
+        <RadioButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/newHouse_radioButton_title"
+            android:id="@+id/radioButtonNewHouse"
+            android:checked="true"
+            android:layout_marginRight="5dp" />
+
+        <RadioButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/joinHouse_radioButton_title"
+            android:id="@+id/radioButtonJoinHouse"
+            android:checked="false" />
+    </RadioGroup>
 
 </RelativeLayout>

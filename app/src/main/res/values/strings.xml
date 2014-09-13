@@ -29,6 +29,8 @@
     <string name="email_editText_hint">E-Mail</string>
     <string name="title_activity_register">RegisterActivity</string>
     <string name="title_activity_splash">SplashActivity</string>
+    <string name="houseName_editText_hint">House Name</string>
+    <string name="housePassword_editText_hint">House Password</string>
 
     <!-- Action Bar Strings -->
     <string name="title_action_logout">Log Out</string>
@@ -39,6 +41,10 @@
     <string name="title_grocery_positive">Add Item</string>
     <string name="title_grocery_negative">Cancel</string>
     <string name="title_addItem_dialog">Create New Item</string>
+
+    <!-- Radio Button Titles -->
+    <string name="newHouse_radioButton_title">New House</string>
+    <string name="joinHouse_radioButton_title">Join Existing</string>
 
 
 </resources>

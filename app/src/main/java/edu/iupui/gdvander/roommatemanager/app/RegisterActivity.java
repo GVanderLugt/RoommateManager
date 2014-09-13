@@ -17,6 +17,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.RadioGroup;
 import android.widget.RelativeLayout;
 import android.widget.Toast;
 
@@ -36,12 +37,18 @@ public class RegisterActivity extends Activity {
     private String email;
     private String password;
     private String confirmPassword;
+    private String houseName;
+    private String housePassword;
+    private String checked = "New House";
     private int responseSuccess;
     private String responseMessage;
     private EditText usernameText;
     private EditText emailText;
     private EditText passwordText;
     private EditText confirmPasswordText;
+    private EditText houseNameText;
+    private EditText housePasswordText;
+    private RadioGroup radioButtonGroup;
     private JSONObject userInfo = new JSONObject();
     private JsonObjectRequestHandler requestHandler = new JsonObjectRequestHandler();
 
@@ -62,6 +69,11 @@ public class RegisterActivity extends Activity {
         emailText = (EditText) findViewById(R.id.editTextEmail);
         passwordText = (EditText) findViewById(R.id.editTextPassword);
         confirmPasswordText = (EditText) findViewById(R.id.editTextConfirmPassword);
+        houseNameText = (EditText) findViewById(R.id.editTextHouseName);
+        housePasswordText = (EditText) findViewById(R.id.editTextHousePassword);
+
+        //Set the RadioGroup member variable
+        radioButtonGroup = (RadioGroup) findViewById(R.id.radioGroup);
 
         //Set the fonts of the editTexts
         usernameText.setTypeface(Typeface.DEFAULT);
@@ -70,6 +82,9 @@ public class RegisterActivity extends Activity {
         confirmPasswordText.setTypeface(Typeface.DEFAULT);
         passwordText.setTransformationMethod(new PasswordTransformationMethod());
         confirmPasswordText.setTransformationMethod(new PasswordTransformationMethod());
+        houseNameText.setTypeface(Typeface.DEFAULT);
+        housePasswordText.setTypeface(Typeface.DEFAULT);
+        housePasswordText.setTransformationMethod(new PasswordTransformationMethod());
 
         //Set the url member variable
         url = "/api/user/register/";
@@ -85,6 +100,25 @@ public class RegisterActivity extends Activity {
                 email = emailText.getText().toString();
                 password = passwordText.getText().toString();
                 confirmPassword = confirmPasswordText.getText().toString();
+                houseName = houseNameText.getText().toString();
+                housePassword = housePasswordText.getText().toString();
+
+                //Check to see which radio button is selected
+                //Get the ID of the view of the radio button that is checked
+                int radioButtonID = radioButtonGroup.getCheckedRadioButtonId();
+
+                //Get the radio button view by the ID
+                View radioButtonView = radioButtonGroup.findViewById(radioButtonID);
+
+                //Find the index (in the radioGroup) of the view
+                switch(radioButtonGroup.indexOfChild(radioButtonView)){
+                    case 0:
+                        checked = "New House";
+                        break;
+                    case 1:
+                        checked = "Join Existing";
+                        break;
+                }
 
                 //If password and confirmPassword match, create the new account
                 if(password.equals(confirmPassword)){
@@ -94,6 +128,9 @@ public class RegisterActivity extends Activity {
                         userInfo.put("username", username);
                         userInfo.put("email", email);
                         userInfo.put("password", password);
+                        userInfo.put("houseName", houseName);
+                        userInfo.put("housePassword", housePassword);
+                        userInfo.put("houseStatus", checked);
                     }
                     catch(JSONException e){
                         //Log the exception
@@ -123,7 +160,7 @@ public class RegisterActivity extends Activity {
                             //Display a toast
                             Toast.makeText(getApplicationContext(),
                                     responseMessage,
-                                    Toast.LENGTH_SHORT).show();
+                                    Toast.LENGTH_LONG).show();
 
                             if(responseSuccess == 1){
                                 //Start the LoginActivity
